@@ -20,13 +20,15 @@ python3 -m http.server 8888 --bind 0.0.0.0  и python3 -m http.server 9999 --bin
 
 2. Установим HAProxy,
 sudo apt install haproxy
-Дополним файл конфигурации
+Дополним файл конфигурации.  
 <img src = "img/1-5.png" width = 60%>
 <img src = "img/1-6.png" width = 60%>
-(конфигурационный файл битый, при запуске дает ошибку.Исправил путем добавления строки внизу)
+(конфигурационный файл битый, при запуске дает ошибку.Исправил путем добавления пустой строки внизу)
 Перезапустим сервис
 <img src = "img/1-7.png" width = 60%>
 
+3. Проверим перенаправление запросов на разные серверы при обращении к HAProxy.
+<img src = "img/1-8.png" width = 60%>  
 
 ---
 
@@ -41,12 +43,13 @@ sudo apt install haproxy
 # Решение 2.
 1. Создадим еще файл index.html в директории http3.      
 <img src = "img/2-1.png" width = 60%>  
-Запустим три simple python сервера, проверим  
+Запустим три simple python сервера, проверим.  
 python3 -m http.server 8888 (9999,7777) --bind 0.0.0.0  
+lsof -i tcp:8888 (9999,7777)  
 <img src = "img/2-2.png" width = 60%>
 <img src = "img/2-3.png" width = 60%>
 
-2. Дополним файл конфигурации, перезагрузим сервис
+2. Дополним файл конфигурации, перезагрузим сервис.
 <img src = "img/2-4.png" width = 60%>
 <img src = "img/2-4-1.png" width = 60%>
 
@@ -64,22 +67,6 @@ python3 -m http.server 8888 (9999,7777) --bind 0.0.0.0
 ---
 
 # Решение 3*.
-sudo apt install memcached  
-<img src = "img/2-1.png" width = 60%>
-
----
-
-### Задание 4*
-- Запустите 4 simple python сервера на разных портах.
-- Первые два сервера будут выдавать страницу index.html вашего сайта example1.local (в файле index.html напишите example1.local)
-- Вторые два сервера будут выдавать страницу index.html вашего сайта example2.local (в файле index.html напишите example2.local)
-- Настройте два бэкенда HAProxy
-- Настройте фронтенд HAProxy так, чтобы в зависимости от запрашиваемого сайта example1.local или example2.local запросы перенаправлялись на разные бэкенды HAProxy
-- На проверку направьте конфигурационный файл HAProxy, скриншоты, демонстрирующие запросы к разным фронтендам и ответам от разных бэкендов.
-
----
-
-# Решение 4*.
 sudo apt install memcached  
 <img src = "img/2-1.png" width = 60%>
 
