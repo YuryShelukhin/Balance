@@ -12,15 +12,15 @@
 1. Создадим два файла index.html в директориях http1 и http2. Укажем в них номера разные портов.      
 <img src = "img/1-1.png" width = 60%>    
 <img src = "img/1-2.png" width = 60%>   
-запустим два simple python сервера  
+запустим два simple python сервера    
 python3 -m http.server 8888 --bind 0.0.0.0  и python3 -m http.server 9999 --bind 0.0.0.0  
 <img src = "img/1-3.png" width = 60%>   
 проверим  
 <img src = "img/1-4.png" width = 60%>
 
-2. Установим HAProxy,
-sudo apt install haproxy
-Дополним файл конфигурации.  
+2. Установим HAProxy.  
+sudo apt install haproxy  
+Дополним файл конфигурации.    
 <img src = "img/1-5.png" width = 60%>
 <img src = "img/1-6.png" width = 60%>  
 #конфигурационный файл битый, при запуске дает ошибку,исправил путем добавления пустой строки внизу   
@@ -46,8 +46,8 @@ sudo apt install haproxy
 # Решение 2.
 1. Создадим еще файл index.html в директории http3.      
 <img src = "img/2-1.png" width = 60%>  
-Запустим три simple python сервера, проверим.  
-python3 -m http.server 8888 (9999,7777) --bind 0.0.0.0  
+Запустим три simple python сервера, проверим.    
+python3 -m http.server 8888 (9999,7777) --bind 0.0.0.0    
 lsof -i tcp:8888 (9999,7777)  
 <img src = "img/2-2.png" width = 60%>
 <img src = "img/2-3.png" width = 60%>
@@ -79,7 +79,7 @@ sudo apt install Nginx
 <img src = "img/3-4.png" width = 60%>  
 
 Перезапустим  Nginx.  
-Поместим файлы 1.jpg и 2.jpg в директории /var/www/, а также файл 1.txt в директории http1 и http2.  
+Поместим файлы 1.jpg и 2.jpg в директорию /var/www/, а также файл 1.txt в директории http1 и http2.  
 <img src = "img/3-5.png" width = 60%> 
 <img src = "img/3-6.png" width = 60%>
 
@@ -89,7 +89,7 @@ sudo apt install Nginx
 ### Использованы следующие файлы конфигурации.  
 [конфигурация nginx](files/nginx.conf)  
 [доп. конфигурационный файл nginx](files/example-http.conf)  
-[конфигурация HAProxy](files/haproxy.cfg)
+[конфигурация HAProxy](files/haproxy.cfg)  
 [конфигурация upstream](files/upstream.inc)
 
 ---
