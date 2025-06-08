@@ -22,13 +22,16 @@ python3 -m http.server 8888 --bind 0.0.0.0  и python3 -m http.server 9999 --bin
 sudo apt install haproxy
 Дополним файл конфигурации.  
 <img src = "img/1-5.png" width = 60%>
-<img src = "img/1-6.png" width = 60%>
-(конфигурационный файл битый, при запуске дает ошибку.Исправил путем добавления пустой строки внизу)
-Перезапустим сервис
+<img src = "img/1-6.png" width = 60%>  
+#конфигурационный файл битый, при запуске дает ошибку,исправил путем добавления пустой строки внизу   
+Перезапустим сервис.  
 <img src = "img/1-7.png" width = 60%>
 
-3. Проверим перенаправление запросов на разные серверы при обращении к HAProxy.
+3. Проверим перенаправление запросов на разные серверы при обращении к HAProxy.  
 <img src = "img/1-8.png" width = 60%>  
+
+Статистику можно посмотреть по адресу http://192.168.65.135:888/stats.  
+<img src = "img/1-9.png" width = 60%>
 
 ---
 
@@ -67,8 +70,27 @@ lsof -i tcp:8888 (9999,7777)
 ---
 
 # Решение 3*.
-sudo apt install memcached  
-<img src = "img/2-1.png" width = 60%>
+1. Установим Nginx.  
+sudo apt install Nginx  
+Перенастроим  Nginx.  
+<img src = "img/3-1.png" width = 60%> 
+<img src = "img/3-2.png" width = 60%>
+<img src = "img/3-3.png" width = 60%> 
+<img src = "img/3-4.png" width = 60%>  
+
+Перезапустим  Nginx.  
+Поместим файлы 1.jpg и 2.jpg в директории /var/www/, а также файл 1.txt в директории http1 и http2.  
+<img src = "img/3-5.png" width = 60%> 
+<img src = "img/3-6.png" width = 60%>
+
+2. Проверим переадресацию.  
+<img src = "img/3-7.png" width = 60%>
+
+### Использованы следующие файлы конфигурации.  
+[конфигурация nginx](files/nginx.conf)  
+[доп. конфигурационный файл nginx](files/example-http.conf)  
+[конфигурация HAProxy](files/haproxy.cfg)
+[конфигурация upstream](files/upstream.inc)
 
 ---
 
